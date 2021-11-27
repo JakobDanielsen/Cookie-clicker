@@ -25,7 +25,6 @@ function updateDisplay() {
     NUM.innerHTML = `Cookies: ${thousandsSeparators(Math.round(cookies))}`
     CPSD.innerHTML = `CPS: ${thousandsSeparators(copese)}`
     PL.innerHTML = `<ul id="pl" class="pl my-2">
-    <h2>Stats</h2>
     <li>Cookie glove power: ${thousandsSeparators(glovePower.toFixed(1))}</li>
     <li>Cookie slaves: ${thousandsSeparators(incomeSources.slaves)}</li>
     <li>Cookie summoners: ${thousandsSeparators(incomeSources.summoners)}</li>
@@ -176,4 +175,55 @@ function skitneCookies(x) {
     cookies +=  x;
     console.log("Skitne cookies smaker ikke godt >:)");
     updateDisplay();
+}
+
+
+const DMT = document.getElementById("dmt")
+const STATTEXT = document.getElementById("st")
+
+let darkmode = localStorage.getItem("darkmode");
+
+const enableDarkMode = () => {
+    localStorage.setItem("darkmode","enabled")
+    STATTEXT.classList.remove("text-dark")
+    document.body.classList.remove("bg-light")
+    document.body.classList.remove("text-dark")
+    document.body.classList.add("bg-dark")
+    document.body.classList.add("text-light")
+    STATTEXT.classList.add("text-light")
+}
+
+const disableDarkMode = () => {
+    localStorage.setItem("darkmode",null)
+    STATTEXT.classList.remove("text-light")
+    document.body.classList.remove("bg-dark")
+    document.body.classList.remove("text-light")
+    document.body.classList.add("bg-light")
+    document.body.classList.add("text-dark")
+    STATTEXT.classList.add("text-dark")
+}
+
+if (darkmode === "enabled") {
+    enableDarkMode();
+}
+
+DMT.addEventListener("click",() => {
+    darkmode = localStorage.getItem("darkmode");
+    if (darkmode !== "enabled") {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+    
+})
+
+
+let rotation;
+
+function rotateImg() {
+  rotation += 180;
+  if (rotation === 360) { 
+    rotation = 0;
+  }
+  DMT.style.transform = `rotate(${rotation}deg)`;
 }

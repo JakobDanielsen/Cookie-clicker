@@ -15,6 +15,10 @@ h3 {
     bottom: 10%;
 } 
 
+#dmt {
+    font-size: 3em;
+}
+
 .pl {
     font-size: 1em;
     color:grey;
@@ -23,4 +27,8 @@ h3 {
 h2 {
     color:black
     
+}
+
+.topbox {
+    display: inline-block;
 }
